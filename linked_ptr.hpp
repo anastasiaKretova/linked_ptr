@@ -65,7 +65,6 @@ namespace smart_ptr
         T* pointer;
 
     public:
-// constructors / destructor
         constexpr linked_ptr() noexcept : node(), pointer(nullptr) {}
 
         explicit linked_ptr(T* pointer) noexcept : node(), pointer(pointer) {}
@@ -89,7 +88,6 @@ namespace smart_ptr
             destroy();
         }
 
-// assign operators
         linked_ptr& operator=(linked_ptr const& other) noexcept
         {
             auto tmp(other);
@@ -105,7 +103,6 @@ namespace smart_ptr
             return *this;
         }
 
-// common smart pointer interface
         template <typename U = T, typename = std::enable_if<std::is_convertible_v<U*, T*>>>
         void reset(U* new_pointer = nullptr)
         {
@@ -134,7 +131,6 @@ namespace smart_ptr
             return get();
         }
 
-// pointer using interface
         T& operator*() const
         {
             return *get();
